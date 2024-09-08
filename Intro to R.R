@@ -21,29 +21,31 @@ View(dt1)
 dim(dt1)
 names(dt1)
 head(dt1)
-dt1[,1]
-dt1[1,]
-dt1[1,1]
+dt1[,2]
+dt1[2,]
+dt1[2,3]
 
 
 #Control Structures in R
 #Sequencing
 #Selection
 #Loop
-x=-2
+x=0
 
 
 if(x>0){
-    print("y")
+    print("P")
   } else if (x==0) {
-    print("No")
+    print("Z")
   } else {
-    print("YES")
+    print("N")
   }
 
 
 a=c(3,2,6,8)
+
 b=c()
+
 for(i in 1:4){
   b[i]=a[i]+1
 }                   

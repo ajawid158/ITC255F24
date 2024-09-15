@@ -30,7 +30,6 @@ FDTQL=function(x){
   RELFreq=round(prop.table(ABSFreq),2)
   CUMFreq=cumsum(RELFreq)
   FDTx=cbind(ABSFreq, RELFreq, CUMFreq)
-  
   return(FDTx)
 }
 FDTQL(dfTips$sex)
@@ -58,21 +57,25 @@ for (k in 1:length(dfTips$tip)) {
   }
 }
 
+head(catTips)
+head(dfTips$tip)
 #apply the function for FDT of QL
 FDTQL(catTips)
 
-#Descriptive methods
+#++++++++++++++++++++Descriptive methods++++++++++++
   #Univar case 
     #Graphs 
       #Categorical vars (pie and bar)
 
 #create the FDT 
+FDTQL(dfTips$smoker)[,2]
+
 fdtSmoker=FDTQL(dfTips$smoker)[,2]
 fdtSmoker
 
 pie(fdtSmoker, 
     col = rainbow(2), 
-    main = 'Smoker distribution')
+    main = 'Smoker Distribution')
 
 barplot(fdtSmoker, 
         col=rainbow(2), 
@@ -90,4 +93,9 @@ hist(dfTips$tip,
 plot(density(dfTips$tip), 
      col='#0033FF', 
      main='Tips distribution')
+
+
+plot(density(dfTips$total_bill), 
+     col='#0033FF', 
+     main='Total Bill distribution')
 

@@ -21,16 +21,16 @@ View(dt1)
 dim(dt1)
 names(dt1)
 head(dt1)
-dt1[,2]
-dt1[2,]
-dt1[2,3]
+dt1[,2]   # the second column
+dt1[2,]    # the second row
+dt1[2,3]   #second row third column
 
 
 #Control Structures in R
 #Sequencing
 #Selection
 #Loop
-x=0
+x=4
 
 
 if(x>0){
@@ -41,6 +41,7 @@ if(x>0){
     print("N")
   }
 
+#LOOP
 
 a=c(3,2,6,8)
 

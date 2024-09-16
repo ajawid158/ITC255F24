@@ -33,6 +33,7 @@ FDTQL=function(x){
   return(FDTx)
 }
 FDTQL(dfTips$sex)
+FDTQL(dfTips$day)
 
 ##Construction FDT of a Qunat variable 
   #Loops and conditional functions work in R
@@ -41,7 +42,7 @@ FDTQL(dfTips$sex)
 #Lets use the variable tips
 
 summary(dfTips$tip)
-
+head(dfTips)
 #define catgories: small whtn tip<3 meduim when tip is 3>= but less than 7, large otherwise
 
 #selection + Loop
@@ -81,10 +82,18 @@ barplot(fdtSmoker,
         col=rainbow(2), 
         main = 'Smoker distribution')
 
+fdttip=FDTQL(catTips)[,2]
+fdttip
+
+barplot(fdttip, 
+        col=rainbow(3), 
+        main = 'Tip distribution')
+
 #Descriptive methods
   #Univar case 
     #Graphs 
       #Num vars (hist and density)
+head(dfTips)
 
 hist(dfTips$tip, 
      col='blue', 

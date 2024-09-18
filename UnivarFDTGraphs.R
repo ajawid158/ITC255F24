@@ -95,7 +95,7 @@ barplot(fdttip,
       #Num vars (hist and density)
 head(dfTips)
 
-hist(dfTips$tip, 
+hist(dfTips$size, 
      col='blue', 
      main = 'Tips distibution')
 
@@ -108,3 +108,9 @@ plot(density(dfTips$total_bill),
      col='#0033FF', 
      main='Total Bill distribution')
 
+y=read.csv("timeToOffice.csv")
+names(y)
+
+
+hist(y$T)
+plot(density(y$T))

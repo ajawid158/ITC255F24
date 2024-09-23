@@ -26,7 +26,7 @@ mymode(dfTips$tip)
 
 #Other locations (quantiles)
 quantile(dfTips$tip)    #quartiles
-quantile(dfTips$tip, 0.4)
+quantile(dfTips$tip, 0.8)
 #write a fun that returns any location in the dist
 
 myQnt=function(x,q){
@@ -36,43 +36,6 @@ myQnt=function(x,q){
 
 myQnt(dfTips$tip, 0.80)
 
-# 80% paid 4 or less as tip, 20% paid more than 4 USD
-
-
-boxplot(dfTips$tip,
-        horizontal = T, 
-        col='#0033FF')
-
-#outliers affect the location of the center dispropotionaly 
-boxplot.stats(dfTips$tip)
-
-outs=boxplot.stats(dfTips$tip)[4] #outliers
-typeof(outs)
-
-outs=data.frame(outs)
-head(outs)
-min(outs$out)
-
-View(dfTips)
-#remove the outliers
-
-tipNew=dfTips$tip[dfTips$tip<6]
-
-
-boxplot(tipNew, horizontal = T)
-mean(tipNew)
-median(tipNew)
-mymode(tipNew)
-
-
-plot(density(tipNew))
-#Variation
-range(dfTips$tip)
-sd(dfTips$tip)
-var(dfTips$tip)   #center means the mean
-mad(dfTips$tip)
-
-plot(density(dfTips$tip))
 ##ECDF Emperical Cummulative Distribution Function
 
 plot(ecdf(dfTips$tip), 
@@ -83,7 +46,7 @@ abline(v=3.9, col='red', lty=3)
 abline(h=0.8, col='darkgreen', lty=3)
 
 
-ecdf(dfTips$tip)(4)
+ecdf(dfTips$tip)(7)
 #83% paid 4 d or less as tip
 
 #quantile and ecdf are inverse of one another
@@ -91,5 +54,36 @@ quantile(dfTips$tip, 0.8) #we have the percentage...look for the value
 
 ecdf(dfTips$tip)(6)    #we have the value ...look for the percentage
 
+# 80% paid 4 or less as tip, 20% paid more than 4 USD
+
+
+boxplot(dfTips$tip,
+        horizontal = T,
+        col='#0033FF')
+
+#outliers affect the location of the center dispropotionaly 
+boxplot.stats(dfTips$tip)
+
+#remove the outliers
+
+tipNew=dfTips$tip[dfTips$tip<6]
+
+boxplot(tipNew, horizontal = T)
+mean(tipNew)
+median(tipNew)
+mymode(tipNew)
+
+
+plot(density(tipNew))
+#Variation
+range(dfTips$tip)
+sd(dfTips$tip)   
+var(dfTips$tip)   #center means the mean
+mad(dfTips$tip)
+
+plot(density(dfTips$tip))
+
+x=c(1,2,3,"5")
+class(x)
 
 #Next:Data Manipulation dplyr package

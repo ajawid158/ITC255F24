@@ -1,3 +1,6 @@
+#ITC 255/Statitical DATA Anlaysis
+###++BivarMethods
+
 dtTips=read.csv('tips.csv')
 head(dtTips)
 
@@ -5,10 +8,24 @@ head(dtTips)
 #Joint Table
 #Gender and smoker associated?
 
-jtSomkGender=table(dtTips$sex, dtTips$smoker)
-jtSomkGender
+jtSG=table(dtTips$sex, dtTips$smoker)
+jtSG
+tf=jtSomkGender[1,]/
+tm=jtSomkGender[2,]/157
+margin.table(jtSG, 1)
 
-chisq.test(jtSomkGender)  #chi square test
+tb=rbind(tf, tm)
+tb
+
+barplot(tb, 
+        beside = T, 
+        col=rainbow(2))
+abline(h=0)
+
+
+tchisq.test(jtSomkGender)  #chi square test
+
+
 
 #p-value = 1 meaning that there is NO Association
 
@@ -24,6 +41,16 @@ names(dtTips)
 
 genGroup=group_by(dtTips, sex)
 summarise(genGroup, mean(tip), sd(tip), min(tip), max(tip))
+ftip=dfTips$tip[dfTips$sex=="Female"]
+mtip=dfTips$tip[dfTips$sex=="Male"]
+
+plot(density(ftip), 
+     xlim=c(0,12), 
+     col="red")
+
+lines(density(mtip),
+      col="blue")
+
 
 t.test(dtTips$tip~dtTips$sex)
 #p-value = 0.1378>0.1 no association  

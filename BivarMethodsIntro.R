@@ -3,16 +3,26 @@
 
 dtTips=read.csv('tips.csv')
 head(dtTips)
-
-#2 QL Variables
-#Joint Table
-#Gender and smoker associated?
+dim(dtTips)
+#CASE of 2 QL Variables
+  #Joint FDT
+    #Gender and smoker associated?
 
 jtSG=table(dtTips$sex, dtTips$smoker)
 jtSG
-tf=jtSomkGender[1,]/
+
+barplot(jtSG, beside = T, 
+        col=rainbow(2))
+
+chisq.test(jtSG)
+
+##Weak/No Association 
+jtSG
+table(dtTips$sex)
+
+tf=jtSomkGender[1,]/87
 tm=jtSomkGender[2,]/157
-margin.table(jtSG, 1)
+
 
 tb=rbind(tf, tm)
 tb
@@ -21,10 +31,6 @@ barplot(tb,
         beside = T, 
         col=rainbow(2))
 abline(h=0)
-
-
-tchisq.test(jtSomkGender)  #chi square test
-
 
 
 #p-value = 1 meaning that there is NO Association
@@ -39,10 +45,15 @@ tchisq.test(jtSomkGender)  #chi square test
 library(dplyr)
 names(dtTips)
 
+#Gender vs Tip
+
 genGroup=group_by(dtTips, sex)
 summarise(genGroup, mean(tip), sd(tip), min(tip), max(tip))
+
 ftip=dfTips$tip[dfTips$sex=="Female"]
 mtip=dfTips$tip[dfTips$sex=="Male"]
+
+#Joint Density
 
 plot(density(ftip), 
      xlim=c(0,12), 

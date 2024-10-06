@@ -95,5 +95,3 @@ cor(dte$Salary, dte$Spending)
 
 LM=lm(Spending~Salary, data=dte)
 summary(LM)
-
-

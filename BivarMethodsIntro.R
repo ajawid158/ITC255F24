@@ -84,3 +84,16 @@ abline(v=25, col='red')
 
 cor(dtTips$total_bill, dtTips$tip)
 cov(dtTips$total_bill, dtTips$tip)
+
+##New dataset
+dte=read.csv("employee.csv")
+head(dte)
+
+#Biuld a model of spending and salary 
+scatter.smooth(dte$Salary, dte$Spending)
+cor(dte$Salary, dte$Spending)
+
+LM=lm(Spending~Salary, data=dte)
+summary(LM)
+
+

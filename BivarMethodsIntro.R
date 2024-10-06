@@ -66,32 +66,47 @@ lines(density(mtip),
 t.test(dtTips$tip~dtTips$sex)
 #p-value = 0.1378>0.1 no association  
 
-#ql is not binary and a QNT 
+#QL is not binary and a QNT 
 #
 #which day the customers pay more tips
+#Day:  QL    Tip:
+
+head(dtTips)
+table(dtTips$day)
 
 dayGroup=group_by(dtTips, day)
 summarise(dayGroup, mean(tip), sd(tip), min(tip), max(tip))
 
+#Joint density
+
+thTip=dtTips$tip[dtTips$day=="Thur"]
+frTip=dtTips$tip[dtTips$day=="Fri"]
+satTip=dtTips$tip[dtTips$day=="Sat"]
+sunTip=dtTips$tip[dtTips$day=="Sun"]
+
+
+#Joint density
+plot(density(thTip), col="red", 
+     xlim=c(0, 11))
+lines(density(frTip), col="blue")
+lines(density(satTip), col="darkgreen")
+lines(density(sunTip))
+
 summary(aov(dtTips$tip~dtTips$day))
 #pvalue=0.174=17.4%>0.1 no significant association
 
-#2 QNT vars
-#how tip changes as total_bill changes 
-
-scatter.smooth(dtTips$total_bill, dtTips$tip)
-abline(v=25, col='red')
-
-cor(dtTips$total_bill, dtTips$tip)
-cov(dtTips$total_bill, dtTips$tip)
-
+#2 QNT VARS
 ##New dataset
 dte=read.csv("employee.csv")
 head(dte)
+View(dte)
 
-#Biuld a model of spending and salary 
+#Relation betweeen Spending and Salary of theses employees
+#Biuld a model of spending and Salary 
+plot(dte$Salary, dte$Spending)
 scatter.smooth(dte$Salary, dte$Spending)
 cor(dte$Salary, dte$Spending)
+cov(dte$Salary, dte$Spending)
 
-LM=lm(Spending~Salary, data=dte)
-summary(LM)
+L1=lm(Spending~Salary, data=dte)
+summary(L1)

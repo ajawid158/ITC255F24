@@ -72,3 +72,71 @@ plot(x,y,
      type="b", 
      col="blue")
 
+
+
+#+++++++++++++++++++++++++++++++++++++++#
+#Normal Distribution
+
+#X~N(10, 4)
+#Generate X
+x=rnorm(10000, 10, 4)
+plot(density(x))
+
+#Pr(X<12)= 0.69
+pnorm(12, 10 , 4)
+
+#Pr(X>11)= 1- Pr(x<11)=0.31
+1-pnorm(12, 10, 4)
+
+#Pr(8<X<12)=Pr(X<12)-Pr(X<8) = 0.38
+pnorm(12, 10, 4)- pnorm(8, 10, 4)
+
+#Simulation in R 
+
+#Y and X 
+#Y=b0+b1X+e    sLR Model of X and Y
+#b0=0.5   b1= 2    X~N(0, 1)   e~N(0, 2)
+#Simulate Y::Generate data on Y
+
+b0=0.5
+b1=2
+x=rnorm(1000, 0, 1)    #generate data on X
+e=rnorm(1000, 0, 2)   #generating random data on error term
+
+#ObJECTIVE: Generate simulated data on Y() 
+
+
+
+
+Y=b0+b1*x+e
+head(Y)
+
+summary(Y)
+
+cor(x,Y)
+plot(x, Y)
+
+#Ex: 
+#x: the income of the employees of a company 
+#y: the spending of these employees
+
+#y= b0+b1x+e    where b0=3,   b1=0.8    x~N(50, 4)    e~N(0, 3)
+#spending= b0 + b1*Income + e     b1=1   b1>1   b1<1
+
+#ObJECTIVE: Generate simulated data on Y(Spending of employees)
+
+b0=3
+b1=0.8
+x=rnorm(1000,40, 6)
+e=rnorm(1000, 0, 3)
+
+y=b0+b1*x+e
+head(y)
+summary(y)
+
+plot(density(y))
+
+cor(x, y)
+plot(x,y, 
+     pch=3)
+
